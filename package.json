@@ -1,5 +1,5 @@
 {
-  "name": "unika",
+  "name": "unika_v2",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -39,6 +39,7 @@
     ]
   },
   "devDependencies": {
-    "sass": "^1.45.0"
+    "sass": "^1.45.0",
+    "react-error-overlay": "6.0.9"
   }
 }

@@ -12,6 +12,15 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
 
     const [searchQuery, setSearchQuery] = useState(query || '');
 
+    //
+
+    const [searchFocused, setSearchFocused] = useState(false);
+
+    const onFocus = () => setSearchFocused(true);
+    const onBlur = () => setSearchFocused(false);
+    console.log(searchFocused)
+    //
+
     // Den filtrerede liste af produkter der matcher søgning
     const filterPosts = (posts, query) => {
         if (!query) {
@@ -39,8 +48,8 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
     }
 
     const filteredPosts = filterPosts(products, searchQuery);
-    const filteredCategories = filterCategory(categories, searchQuery);
 
+    // const filteredCategories = filterCategory(categories, searchQuery);
 
     const [sticky, setSticky] = useState({ isSticky: false, offset: 0 });
 
@@ -102,7 +111,7 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
                                     }
                                 </div>
                             </Link>
-                            <Search headerLight={headerLight} searchQuery={searchQuery} setSearchQuery={setSearchQuery} products={products} />
+                            <Search headerLight={headerLight} searchQuery={searchQuery} setSearchQuery={setSearchQuery} products={products} searchFocused={searchFocused} onFocus={onFocus} onBlur={onBlur} />
                             <div className={`profile_header ${headerLight === true ? "light_header" : "dark_header"}`}>
                                 <span className="profile_icon"></span>
                             </div>
@@ -187,22 +196,38 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
                     </div>
                 </nav >
             </div >
-            {searchQuery.length > 2 &&
+            {searchFocused &&
                 <div className="search_results">
                     <ul>
-                        {filteredPosts && filteredPosts.map((product, index) => (
+                        {filteredPosts && filteredPosts.slice(0, 3).map((product, index) => (
                             <Link to={`/product/id=${product.id}`} className="single_product" key={index} >
-                                <li>{product.title}</li>
+                                <li>
+                                    <div className="search_item">
+                                        <div className="item_image">
+                                            <img src={`../img/${product.firstImage}`} alt={product.title} />
+                                        </div>
+                                        <div className="item_content">
+                                            <h3>{product.title}</h3>
+                                            <p>{product.brand}</p>
+                                        </div>
+                                    </div>
+                                </li>
                             </Link>
                         ))
                         }
-                        {filteredCategories && filteredCategories.map((category, index) => (
+                        {/* Skal denne med? */}
+                        {/* {filteredCategories && filteredCategories.map((category, index) => (
                             <Link to={`/categorylist/?search=${category.name}`} key={index} >
                                 <li key={index}>{category.name}</li>
                             </Link>
                         ))
-                        }
+                        } */}
                     </ul>
+                    {filteredPosts && filteredPosts.length > 2 &&
+                        <div className="search_results_btn">
+                            <button>Se alle resultater</button>
+                        </div>
+                    }
                 </div>
             }
             {isMobileMenuOpen &&

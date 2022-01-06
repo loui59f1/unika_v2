@@ -1,4 +1,8 @@
-const Search = ({ searchQuery, setSearchQuery, headerLight }) => {
+import { useState } from "react";
+
+const Search = ({ searchQuery, setSearchQuery, headerLight, onFocus, onBlur }) => {
+
+
 
     // Her sender vi en search request til /categorylist/?=category
 
@@ -14,6 +18,8 @@ const Search = ({ searchQuery, setSearchQuery, headerLight }) => {
                         placeholder="Søg efter produkt eller designer"
                         id="header-search"
                         name="search"
+                        onFocus={onFocus}
+                        onBlur={onBlur}
                     />
                     <button type="submit" className="search_btn"><span className="search_icon"></span></button>
                 </form>
