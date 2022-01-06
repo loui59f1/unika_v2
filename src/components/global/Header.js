@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import Search from "./Search";
-import { Link, useNavigate, createSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { categories } from "../../categories";
 
 const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, basketModalOn, isModalOpen, setIsModalOpen, isMobileMenuOpen, setIsMobileMenuOpen, products }) => {

@@ -6,7 +6,7 @@ import HeroSmall from "./HeroSmall";
 import { categories } from '../../categories';
 import { designers } from '../../designers';
 
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Categorylist = ({ products, onAdd, onRemove, heroTitle, setHeroTitle, setHeaderLight, setBasketModalOn, animate }) => {
     const [sortSelected, setSortSelected] = useState('popular');
