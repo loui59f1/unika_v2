@@ -35,18 +35,6 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
         });
     };
 
-    // Den filtrerede liste af kategorier der matcher søgning 
-    const filterCategory = (category, query) => {
-        if (!query) {
-            return null;
-        }
-
-        return category.filter((category) => {
-            const categoryName = category.name.toLowerCase();
-            return categoryName.includes(query);
-        });
-    }
-
     const filteredPosts = filterPosts(products, searchQuery);
 
     // const filteredCategories = filterCategory(categories, searchQuery);

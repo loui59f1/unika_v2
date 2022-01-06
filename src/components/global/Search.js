@@ -1,8 +1,4 @@
-import { useState } from "react";
-
 const Search = ({ searchQuery, setSearchQuery, headerLight, onFocus, onBlur }) => {
-
-
 
     // Her sender vi en search request til /categorylist/?=category
 
