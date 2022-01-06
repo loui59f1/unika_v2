@@ -196,7 +196,7 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
                     </div>
                 </nav >
             </div >
-            {searchFocused &&
+            {searchFocused && searchQuery.length > 1 &&
                 <div className="search_results">
                     <ul>
                         {filteredPosts && filteredPosts.slice(0, 3).map((product, index) => (
@@ -230,7 +230,8 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
                     }
                 </div>
             }
-            {isMobileMenuOpen &&
+            {
+                isMobileMenuOpen &&
                 <div className="mobile_menu_list">
                     <div className="close_container" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
                         <span></span>
