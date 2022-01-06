@@ -593,13 +593,20 @@ a:hover {
 
 .search_results {
     position: absolute;
-    background-color: #fff;
+    background-color: #F8F7F3;
+    z-index: 99999999;
+    border: 1px solid #e9e5e3;
+    animation-name: basketModalAnimation;
+    animation-fill-mode: both;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    box-shadow: 12px 0px 60px 0px rgba(155, 155, 155, 0.062);
     padding: 25px;
-    width: 300px;
+    width: 18vw;
     height: 300px;
     overflow-y: scroll;
     right: 24.6%;
-    top: 60%;
+    top: 140px;
 
     ul {
         padding-left: 0;
