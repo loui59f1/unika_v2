@@ -1,0 +1,103 @@
+footer {
+    background-color: #F8F7F3;
+
+    .footer_grid {
+        padding: 50px 25px;
+        text-align: center;
+        display: block;
+
+        @include lg {
+            padding: 100px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 3em;
+        }
+
+        .contact p {
+            cursor: default;
+        }
+
+        .footer_logos {
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+            margin-left: 30px;
+            
+            img {
+                margin-right: 25px;
+                opacity: 0.16;
+            }
+            img:hover {
+                opacity: 0.3;
+            }
+        }
+
+        .column {
+            text-align: left;
+            margin-bottom: 25px;
+
+            @include lg {
+                margin-bottom: 0px;
+            }
+
+            h3 {
+                margin-bottom: 20px;
+            }
+
+            ul {
+                padding-left: 0;
+
+                li {
+                    font-family: 'Source Sans Pro';
+                    font-size: 15px;
+                    font-weight: 300;
+                    line-height: 24px;
+                    margin-bottom: 8px;
+                    
+                    a {
+                        text-decoration: none;
+                        color: #000;
+                    }
+                    a:hover {
+                        color: #EA8C7D;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.bottom_bar {
+    background-color: #F0EDEB;
+    color: #000;
+    font-size: 12px;
+    padding: 10px;
+
+    .container {
+        display: block;
+        text-align: center;
+
+        @include lg {
+            display: flex;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        p {
+            font-size: 12px;
+            font-family: 'Jost';
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 3px;
+            font-weight: 400;
+            opacity: 0.4;
+            margin-right: 0px;
+            cursor: default;
+
+            @include lg {
+                margin-right: 50px;
+            }
+        }
+
+    }
+}
