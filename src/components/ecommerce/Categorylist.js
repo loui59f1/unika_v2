@@ -11,9 +11,9 @@ import { Link } from 'react-router-dom';
 const Categorylist = ({ products, onAdd, onRemove, heroTitle, setHeroTitle, setHeaderLight, setBasketModalOn, animate }) => {
     const [sortSelected, setSortSelected] = useState('popular');
     const [filteredProducts, setFilteredProducts] = useState([]);
-    // const [searchValue, setSearchValue] = useState()
 
     // Rydder op i søgning og tager højde for store, små bogstaver og mellemrum.
+
     const toTitleCase = (string) => {
         return string
             .toLowerCase()
@@ -22,9 +22,10 @@ const Categorylist = ({ products, onAdd, onRemove, heroTitle, setHeroTitle, setH
             .join(' ');
     };
 
-
     // Henter det search input efter ? i url:
+
     let queryParams = new URLSearchParams(window.location.search);
+
     let search = queryParams.get('search');
 
     if (search === '' | search === null) {
@@ -33,9 +34,6 @@ const Categorylist = ({ products, onAdd, onRemove, heroTitle, setHeroTitle, setH
 
     let searchValue = toTitleCase(search);
     // ex: Kopper, Tallerkener, Helle Grej
-
-    console.log(search);
-
 
     useEffect(() => {
         const handleSearchOnLoad = () => {
@@ -50,11 +48,15 @@ const Categorylist = ({ products, onAdd, onRemove, heroTitle, setHeroTitle, setH
                 console.log("Searchvalue is something else");
                 setHeroTitle("Produkter");
             }
-
         };
 
         handleSearchOnLoad();
     });
+
+    // Find index på enten den søgte kategori eller brand
+
+    const categoryIndex = categories.findIndex(checkCategory);
+    const designerIndex = designers.findIndex(checkCategory);
 
     //
 
@@ -70,11 +72,6 @@ const Categorylist = ({ products, onAdd, onRemove, heroTitle, setHeroTitle, setH
         new Array(categories.length).fill(false)
     );
 
-
-    // find index på søgte kategori
-    const categoryIndex = categories.findIndex(checkCategory);
-    const designerIndex = designers.findIndex(checkCategory);
-
     function checkCategory(category) {
         return category.name === searchValue;
     }
@@ -85,23 +82,13 @@ const Categorylist = ({ products, onAdd, onRemove, heroTitle, setHeroTitle, setH
             setHeaderLight(true);
             setBasketModalOn(true);
 
-            // opdaterer checkbox, men skal nulstilles når der gås til ny side.
+            // Her opdateres checkbox, alt efter hvilken kategori/brand der er søgt
             categoryChecked[categoryIndex] = true;
             designerChecked[designerIndex] = true;
-
-            // setCheckedCategories(selectedCategory);
         };
-
-        // if (categoryIndex === -1) {
-        //     return null;
-        // } else {
-        //     setCategoryChecked[0] = ;
-        // }
 
         handleStatesOnLoad();
     });
-
-
 
     const handleDesignerChange = (position) => {
         // Find true or false value on checked, sets array to designerChecked (true, false, false)
@@ -193,7 +180,6 @@ const Categorylist = ({ products, onAdd, onRemove, heroTitle, setHeroTitle, setH
         }
 
     }, [checkedCategories, checkedBrands, sortSelected, products]);
-
 
     return (
         <div className={`${animate ? 'transition' : ''}`}>

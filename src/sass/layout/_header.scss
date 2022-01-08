@@ -336,6 +336,14 @@ nav li {
         font-family: 'Source Sans Pro';
         font-size: 14px;
     }
+
+input label {
+    color: red;
+}
+
+    input::placeholder {
+        color: #F8F7F3;
+    }
 }
 
 input:-webkit-autofill,

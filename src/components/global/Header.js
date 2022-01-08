@@ -5,23 +5,19 @@ import { categories } from "../../categories";
 
 const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, basketModalOn, isModalOpen, setIsModalOpen, isMobileMenuOpen, setIsMobileMenuOpen, products }) => {
 
-    // Her henter vi værdien af input som brugeren har søgt, den opdateres ved hver ændring.
+    // Søgefelt states og funktioner
 
     const { search } = window.location;
     const query = new URLSearchParams(search).get('/search');
 
     const [searchQuery, setSearchQuery] = useState(query || '');
-
-    //
-
     const [searchFocused, setSearchFocused] = useState(false);
 
     const onFocus = () => setSearchFocused(true);
     const onBlur = () => setSearchFocused(false);
-    console.log(searchFocused)
-    //
 
-    // Den filtrerede liste af produkter der matcher søgning
+    // Den filtrerede liste af produkter der matcher søgning, til dropdown
+
     const filterPosts = (posts, query) => {
         if (!query) {
             return null;
@@ -37,9 +33,11 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
 
     const filteredPosts = filterPosts(products, searchQuery);
 
-    // const filteredCategories = filterCategory(categories, searchQuery);
+    // Sticky meny state
 
     const [sticky, setSticky] = useState({ isSticky: false, offset: 0 });
+
+    // Variabler og funktion til at registrere scroll til animation
 
     const headerRef = useRef(null);
 
@@ -50,6 +48,8 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
             setSticky({ isSticky: false, offset: 0 });
         }
     };
+
+    // UseEffect til load af siden, hvor der lægges eventlistener på scroll
 
     useEffect(() => {
         var header = headerRef.current.getBoundingClientRect();
@@ -136,8 +136,8 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
                         <div className="bottom_nav">
                             <div className={`${headerLight === true ? "light_header" : "dark_header"}`}>
                                 <ul className="categories">
-                                    {categories.map((category) => (
-                                        <Link to="/productlist"><li>{category.name}</li></Link>
+                                    {categories.map((category, index) => (
+                                        <Link key={index} to="/productlist"><li>{category.name}</li></Link>
                                     ))}
                                 </ul>
                                 <ul className="links">
@@ -184,6 +184,7 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
                     </div>
                 </nav >
             </div >
+
             {searchFocused && searchQuery.length > 1 &&
                 <div className="search_results">
                     <ul>
@@ -203,13 +204,6 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
                             </Link>
                         ))
                         }
-                        {/* Skal denne med? */}
-                        {/* {filteredCategories && filteredCategories.map((category, index) => (
-                            <Link to={`/categorylist/?search=${category.name}`} key={index} >
-                                <li key={index}>{category.name}</li>
-                            </Link>
-                        ))
-                        } */}
                     </ul>
                     {filteredPosts && filteredPosts.length > 2 &&
                         <div className="search_results_btn">
@@ -218,6 +212,8 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
                     }
                 </div>
             }
+
+
             {
                 isMobileMenuOpen &&
                 <div className="mobile_menu_list">
@@ -265,8 +261,8 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
                                         }
                                     </div>
                                     <hr className="mt-20 mb-20"></hr>
-                                    {basket.map((product) => (
-                                        <div className="basket_item">
+                                    {basket.map((product, index) => (
+                                        <div className="basket_item" key={index}>
                                             <div className="remove_container">
                                                 <span className="remove_icon" onClick={() => onRemove(product)}></span>
                                             </div>

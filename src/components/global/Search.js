@@ -1,15 +1,15 @@
-const Search = ({ searchQuery, setSearchQuery, headerLight, onFocus, onBlur }) => {
 
-    // Her sender vi en search request til /categorylist/?=category
+const Search = ({ searchQuery, setSearchQuery, headerLight, onFocus, onBlur }) => {
 
     return (
         <>
             <div className={`search_container ${headerLight === true ? "light_header" : "dark_header"}`}>
-                <form action="/categorylist/" method="get">
+                <form action="/categorylist/" method="get" role='search'>
                     <input
+                        aria-label="Søg"
                         value={searchQuery}
                         onInput={(e) => setSearchQuery(e.target.value)}
-                        type="text"
+                        type="search"
                         className="input_search"
                         placeholder="Søg efter produkt eller designer"
                         id="header-search"
