@@ -209,7 +209,7 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
                     </ul>
                     {filteredPosts && filteredPosts.length > 2 &&
                         <div className="search_results_btn">
-                            <Link to={`/categorylist/${searchQuery}`}><button>Se alle resultater</button></Link>
+                            <button>Se alle resultater</button>
                         </div>
                     }
                 </div>
