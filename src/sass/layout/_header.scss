@@ -351,6 +351,10 @@ input label {
     color: #000;
 }
 
+.light_header input::placeholder {
+    color: #000;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
