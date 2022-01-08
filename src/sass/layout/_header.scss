@@ -344,6 +344,11 @@ input label {
     input::placeholder {
         color: #F8F7F3;
     }
+
+}
+
+.sticky .light_header input::placeholder {
+    color: #000;
 }
 
 input:-webkit-autofill,
@@ -544,6 +549,10 @@ a:hover {
     color: #000;
 }
 
+.light_header .input_search input::placeholder {
+    color: red;
+}
+
 .input_search:focus {
     border: none;
     border-bottom: 1px solid #FCD8B9;
@@ -558,7 +567,7 @@ a:hover {
     background-image: url('../../images/search_icon_dark.svg');
 }
 
-.search_results_container {
+.search_results {
     position: absolute;
     background-color: #F8F7F3;
     width: 300px;
@@ -631,7 +640,7 @@ a:hover {
     .search_results_btn {
         text-align: center;
         position: relative;
-        bottom: -20px;
+        bottom: -30px;
 
         button {
             text-transform: uppercase;

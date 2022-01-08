@@ -14,7 +14,9 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
     const [searchFocused, setSearchFocused] = useState(false);
 
     const onFocus = () => setSearchFocused(true);
-    const onBlur = () => setSearchFocused(false);
+    const onBlur = () => {
+        setTimeout(() => setSearchFocused(false), 500);
+    };
 
     // Den filtrerede liste af produkter der matcher søgning, til dropdown
 
@@ -185,7 +187,7 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
                 </nav >
             </div >
 
-            {searchFocused && searchQuery.length > 1 &&
+            {searchFocused && searchQuery.length > 1 && filteredPosts.length > 0 &&
                 <div className="search_results">
                     <ul>
                         {filteredPosts && filteredPosts.slice(0, 3).map((product, index) => (
@@ -207,7 +209,7 @@ const Header = ({ basket, basketAmount, subtotal, total, onRemove, headerLight, 
                     </ul>
                     {filteredPosts && filteredPosts.length > 2 &&
                         <div className="search_results_btn">
-                            <button>Se alle resultater</button>
+                            <Link to={`/categorylist/${searchQuery}`}><button>Se alle resultater</button></Link>
                         </div>
                     }
                 </div>

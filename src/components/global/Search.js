@@ -16,6 +16,7 @@ const Search = ({ searchQuery, setSearchQuery, headerLight, onFocus, onBlur }) =
                         name="search"
                         onFocus={onFocus}
                         onBlur={onBlur}
+                        autoComplete="off"
                     />
                     <button type="submit" className="search_btn"><span className="search_icon"></span></button>
                 </form>
